@@ -21,6 +21,126 @@
         </a>
     </div>
 
+
+    <main class="p3 max-width2 mx-auto" id="app">
+      <header class="mb3 border-bottom border-silver">
+        <h2 class="h2">Heyo 👋</h2>
+        <h1 class="h1 lh-lg">An introduction to <code class="code">.map, .filter, .reduce</code> by making a fresh fruit salad (🥗).</h1>
+      </header>
+      <section>
+        <article class="mb3">
+          <p class="h3">Any good fruit salad should be brimming with nice stuff; carefully selected, chopped and mixed into a tasty bowl of goodness.</p>
+          <p class="h3">They're also great for explaining JavaScript's more functional methods, which undoubtedly will be a good addition to your developer skills.</p>
+          <p class="h3">Hungry yet? Good. Let's get chopping with some basic examples.</p>
+        </article>
+        <concept-explainer title="Chop the fruit into pieces" subtitle="Transforming with .map">
+          <code-example slot="right-of-title" title="Example">array.map(x => x.value)</code-example>
+          <template slot="body">
+            <p class="mt0">Since there's not much fun with a fruit salad if we just throw in our fruits as they are into a bowl and call it a day (that's just a bowl of fruit, eck...), we'll chop them into pieces first. <code class="code">.map</code> works wonders for this. Let's try it out.</p>
+            <code-example title="Code Example">
+              const fruits = ['🍎', '🍌', '🍈', '🍉', '🌶️', '🍊']
+
+              const chop = (fruits, pieces = 4) =>
+                fruits.map(type =>
+                  ({ type, pieces })
+
+                  /* ☝️ ES6 allows us to avoid typing unnecessary
+                     key, value pairs if there are arguments
+                     with the same name within the same scope.
+
+                     Also ({ type, pieces }) is simply shorthand
+                     for "return { type, pieces }".
+                  */
+                )
+
+              const choppedFruits = chop(fruits)
+
+            </code-example>
+            <p>What! Our fruits got sliced and diced into 4 pieces each and returned to us in a neat container arranged by type. I wish my kitchen could do that in real life.</p>
+            <p>So, what's happening? By running the <code>.map</code> method on our <code>fruits Array</code>, we end up with this neat Array of Objects:</p>
+            <code-example title="After using .map on the fruits array, we get...">
+              console.log(choppedFruits)
+              /*
+              [
+                { type: '🍎', pieces: 4 },
+                { type: '🍌', pieces: 4 }
+                ... etc.
+              ]
+              */
+
+            </code-example>
+            <p>Behind the scenes, <code>.map</code> will loop through your array, apply the transformations that you defined, and finally return a new array with the transformed data back to you. What's key here is that the new array it's own copy, and not that the original array was altered (or "mutated").</p>
+            <p>Since it's a completely new array, we don't have to worry about our original array being permanently changed. It's not, which allows us to keep transforming the original into many different directions, if you need to.</p>
+            <p>This "immutability" is a common trait for both <code>.map, .filter, and .reduce</code>, and it's generally a good thing to keep in mind when you want to avoid unwanted side effects when working with arrays.</p>
+          </template>
+        </concept-explainer>
+        <concept-explainer class="mt3" title="What's that 🌶️ doing in there?" subtitle="Filtering out stuff with .filter">
+          <code-example slot="right-of-title" title="Example">array.filter(x => x !== y)</code-example>
+          <template slot="body">
+            <p class="mt0">Oh no! We've accidentally chopped a super spicy chili pepper into our lovely fruit salad. That won't do -  unless you like a fiery kick with your fruit.</p>
+            <p>If this was in a real kitchen, we'd have to tediously pick out all the pepper pieces, wasting our time. Luckily, we don't have this problem in JavaScript as we can just use <code>.filter</code> to pick out that chili in a zinch. Let's give it a shot.</p>
+            <code-example title="Applying .filter to our array of chopped fruits">
+              const removeChilis = fruits =>
+                fruits.filter(fruit => fruit.type !== '🌶️')
+
+              const fruitsWithoutChilis = removeChilis(choppedFruits)
+
+              console.log(fruitsWithoutChilis)
+
+              /* Chili's out. All good.
+                [
+                  { "type": "🍎", "pieces": 4 },
+                  { "type": "🍌", "pieces": 4 },
+                  { "type": "🍈", "pieces": 4 },
+                  { "type": "🍉", "pieces": 4 },
+                  { "type": "🍊", "pieces": 4 },
+                  { "type": "🍓", "pieces": 4 }
+                ]
+              */
+
+            </code-example>
+            <p>Ah, much better. The <code>.filter</code> method makes it easy for us to include or exclude items in an array (or arrays of Objects) and continue using the newly returned, and filtered, array for new stuff.</p>
+            <p>Keep in mind, that filtering doesn't always mean filtering things out as in a <code>x !== y</code> fashion. It can just as well be the other way around as in "give me only that 🌶️ and leave out the rest", by saying <code>fruit.type === '🌶️'</code>.</p>
+          </template>
+        </concept-explainer>
+        <concept-explainer class="mt3" title="Mixing it together, 🥗-time" subtitle="Reducing multiple things to one thing with .reduce">
+          <code-example slot="right-of-title" title="Example">array.reduce((a, b) => a + b, c)</code-example>
+          <template slot="body">
+            <p class="mt0">Finally, without any fiery surprises, we can mix our tasty fruit pieces together into a grand fruit salad. The <code>.reduce</code> method is great for this, since it allows us to loop through all of our chopped fruits and add them into the bowl one by one until we end up with one, finished and mixed bowl.</p>
+            <p>Let's have a look at that.</p>
+            <code-example title="Applying .reduce to our array of chopped fruits">
+              const mix = (fruits, bowl = '') =>
+                fruits.reduce(
+                  (content, fruit) => content + fruit.type
+                , bowl)
+
+              /*
+                This yields a String `🍎🍌🍈🍉🍊🍓` because
+                we're just concatinating these guys together.
+              */
+              const fruitSalad = mix(fruitsWithoutChilis)
+
+              // But is it really a fruit salad? Let's check...
+              console.log(fruitSalad === `🍎🍌🍈🍉🍊🍓` ? '🥗' : '😱')
+
+              // 🥗, yay!
+
+            </code-example>
+            <p>We did it! With a little help from <code>.reduce</code> we could mix all our fruit pieces into one bowl. So, what happened here?</p>
+            <p><code>.reduce</code> is a very interesting method that can do tons of complex stuff, which is out of scope for this piece, but the gist of is that you <em>"take multiple values and calculate them into one final value"</em>.</p>
+            <p>A typical use case is summing up stuff, like counting how many fruit pieces there were in total. The uses are endless when you start to really get a grasp of it.</p>
+            <p>One gotcha is the initial value that you can pass a <code>.reduce</code> method. In our case we pass an empty <code>bowl String</code>, but it can basically be anything. A number, an Array, an Object, etc.</p>
+            <p>The initial value can be a bit strange at first, but in our fruit salad example you can try and think of it as the empty bowl itself. It is "connected" to the <code>content</code> variable, so whenever we do an operation, we're looking into the bowl and adding more stuff to it's <em>current</em> content.</p>
+            <p>Until we don't have anything left, that is. Then <code>.reduce</code> stops and returns the final result.</p>
+          </template>
+        </concept-explainer>
+        <footer>
+          <p>If the examples were interesting to you and you want to learn more about all the cool things that you can do with Arrays, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">hop over to MDN</a>. It's a great resource.</p>
+          <p>Thanks for reading ✌️.</p>
+        </footer>
+      </section>
+    </main>
+
   <section id="contact">
     <div class="overlay">
       <div class="containers">
@@ -39,6 +159,7 @@ while((b++>5?b=0:b)|c<x)h+=(b?'':'<tr>')+'<td>'+(++c<1|c>x?'-':c);document.write
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 <script src="js/scripts.js" charset="utf-8"></script>
 

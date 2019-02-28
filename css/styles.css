@@ -1,4 +1,4 @@
-body {
+/*body {
   text-align: center;
   font-family: courier;
   background-image: url("../assets/image.jpeg");
@@ -19,6 +19,26 @@ body {
 
 .my_social a img {
   height: 1.5em;
+}
+
+.lh-lg {
+  line-height: 125%;
+}
+
+.pre {
+  white-space: pre;
+}
+
+.bg-slate-black {
+  background-color: #1B2B34;
+}
+
+.bg-ghostwhite {
+  background-color: ghostwhite;
+}
+
+.max-width2 {
+  max-width: 800px;
 }
 
 .containers {
