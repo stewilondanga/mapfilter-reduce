@@ -30,14 +30,17 @@ var ingredients = {
                 |----
                 */
 };
-/*Vue.component('CodeExample', {
+Vue.component('CodeExample', {
   props: {
     title: {
       type: String,
-      default: '' } },
+      default: ''
+    }
+  },
 
 
-  template: '\n    <div class="c-code-example">\n      <div class="h5 bold mb1" v-if="title" v-text="title"></div>\n      <code :class="\'block p2 bg-slate-black white rounded\'">\n        <div class="pre"><slot /></div>\n      </code>\n    </div>\n  ' });
+  template: '\n    <div class="c-code-example">\n      <div class="h5 bold mb1" v-if="title" v-text="title"></div>\n      <code :class="\'block p2 bg-slate-black white rounded\'">\n        <div class="pre"><slot /></div>\n      </code>\n    </div>\n  '
+});
 
 
 
