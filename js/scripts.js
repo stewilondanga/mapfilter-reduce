@@ -54,24 +54,22 @@ Vue.component('CodeExample', {
                                                                                                                                                                                                                                                                  | Component: Concept Explainer
                                                                                                                                                                                                                                                                  |----
                                                                                                                                                                                                                                                                  */
-/*Vue.component('ConceptExplainer', {
+Vue.component('ConceptExplainer', {
   props: {
     title: {
       type: String,
-      default: 'Title' },
+      default: 'Title'
+    },
 
     subtitle: {
       type: String,
-      default: 'Subtitle' } },
+      default: 'Subtitle'
+    }
+  },
 
 
-  template: '\n    <div class="c-concept-explainer">\n      <header class="c-concept-explainer__header" :class="\'flex items-center justify-between py2 px3 bg-ghostwhite border border-silver rounded-top\'">\n        <section>\n          <div class="h5 mb0 gray" v-text="subtitle"></div>\n          <div class="h2 mt0 mb0" v-text="title"></div>\n        </section>\n        <slot name="right-of-title"/>\n      </header>\n      <section class="c-concept-explainer__body" :class="\'p3 border-left border-bottom border-right border-silver rounded-bottom\'">\n        <slot name="body" />\n      </section>\n    </div>\n  ' });
-
-
-
-
-
-
+  template: '\n    <div class="c-concept-explainer">\n      <header class="c-concept-explainer__header" :class="\'flex items-center justify-between py2 px3 bg-ghostwhite border border-silver rounded-top\'">\n        <section>\n          <div class="h5 mb0 gray" v-text="subtitle"></div>\n          <div class="h2 mt0 mb0" v-text="title"></div>\n        </section>\n        <slot name="right-of-title"/>\n      </header>\n      <section class="c-concept-explainer__body" :class="\'p3 border-left border-bottom border-right border-silver rounded-bottom\'">\n        <slot name="body" />\n      </section>\n    </div>\n  '
+});
 
 
 
