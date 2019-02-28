@@ -12,7 +12,7 @@ var navigate = (function() {
               |----
               */
 // salad: '🥗'
-/*var ingredients = {
+var ingredients = {
   apple: '🍎',
   pear: '🍐',
   tangerine: '🍊',
